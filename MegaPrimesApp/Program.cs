@@ -13,8 +13,10 @@ namespace MegaPrimesApp
             // Command line parameters
             // <1> - Number to generate megaprimes up to (REQUIRED)
             // <2> - Algorithm to use (OPTIONAL)
-            //          SES - Uses the segmented version of the sieve of Eratosthenes algorithm (DEFAULT)
+            //          FAST - Fastest algorithm developeed (DEFAULT)
             //          TD - Uses the trial by division algorithm
+            //          SES - Uses the segmented version of the sieve of Eratosthenes algorithm
+
 
             if (args.Length == 0)
             {
@@ -54,6 +56,10 @@ namespace MegaPrimesApp
                 {
                     megaPrimes = MegaPrimeCalc.SieveEratosthenesSegmented(max);
                 }
+                else if (args[1] == "FAST")
+                {
+                    megaPrimes = MegaPrimeCalc.Fast(max);
+                }
                 else
                 {
                     Console.Write("ERROR: Parameter '{0}' not recognised algorithm\n", args[1]);
@@ -62,7 +68,7 @@ namespace MegaPrimesApp
             }
             else
             {
-                megaPrimes = MegaPrimeCalc.SieveEratosthenesSegmented(max);
+                megaPrimes = MegaPrimeCalc.Fast(max);
             }
 
             stopWatch.Stop();
@@ -79,7 +85,7 @@ namespace MegaPrimesApp
             Console.Write(" }\n\n");
 
             Console.Write("There are {0} megaprime numbers up to and including the number {1}\n\n", megaPrimes.Count, max);
-            Console.Write("Time take is {0} seconds\n\n", ts.TotalSeconds);
+            Console.Write("Time take is {0} seconds\n", ts.TotalSeconds);
         }
     }
 }

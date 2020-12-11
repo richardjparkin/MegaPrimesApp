@@ -82,6 +82,65 @@ namespace MegaPrimesApp
             return primes;
         }
 
+        public static List<uint> Fast(uint max)
+        {
+            // Function that retrieves all the megaprime numbers up to <max> by quickly identifying the numbers whos digits are all prime
+            // If ANY digits of a number are NOT prime then instead of increasing the number by 1, increase the first digit that wasn't prime by 1
+
+            // e.g.
+
+            // If the current number is 422222222 then there is no point checking 422222223 - 499999999 because they will all fail because of the 4
+            // Therefore we can safely increase the last digit by one to 522222222
+
+            List<uint> megaPrimes = new List<uint>();
+            
+            ulong i = 2;
+
+            while (i <= max)
+            {
+                uint number = (uint)i;
+                uint digit = 0;
+                uint index = 0;
+
+                // Iterate through digits, least significant first
+
+                while (number != 0)
+                {
+                    digit = number % 10;
+
+                    if (digit != 2 && digit != 3 && digit != 5 && digit != 7)
+                    {
+                        break;
+                    }
+
+                    number /= 10;
+                    index++;
+                }
+
+                if (number == 0)
+                {
+                    // All digits ARE primes so check if the number is prime too
+
+                    if (IsPrime((uint)i))
+                    {
+                        megaPrimes.Add((uint)i);
+                    }
+
+                    // Check next number
+
+                    i++;
+                }
+                else
+                {
+                    // All digits are NOT primes, increase the first digit that failed by 1
+
+                    i += Convert.ToUInt32(Math.Pow(10, Convert.ToDouble(index)));
+                }
+            }
+            
+            return megaPrimes;
+        }
+
         public static List<uint> SieveEratosthenesSegmented(uint max)
         {
             // Function that retrieves all the megaprime numbers up to <max> using the segmented version of the sieve of Eratosthenes algorithm (https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes)
