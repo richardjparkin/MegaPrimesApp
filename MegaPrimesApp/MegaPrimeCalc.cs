@@ -14,11 +14,15 @@ namespace MegaPrimesApp
             if (number <= 1)
             {
                 return false;
+            } 
+            else if (number % 2 == 0)
+            {
+                return number == 2;
             }
 
             uint root = Convert.ToUInt32(Math.Sqrt(Convert.ToDouble(number)));
 
-            for (uint i = 2; i <= root; i++)
+            for (uint i = 3; i <= root; i+=2)
             {
                 if (number % i == 0)
                 {
@@ -155,11 +159,18 @@ namespace MegaPrimesApp
 
             List<uint> megaPrimes = new List<uint>();
 
-            for (uint i = 2; i <= max && i != 0; i++)
+            if (max < 2)
             {
-                if (AreAllDigitsPrime(i) && IsPrime(i))
+                return megaPrimes;
+            }
+
+            megaPrimes.Add(2);
+
+            for (ulong i = 3; i <= max; i += 2)
+            {
+                if (AreAllDigitsPrime((uint)i) && IsPrime((uint)i))
                 {
-                    megaPrimes.Add(i);
+                    megaPrimes.Add((uint)i);
                 }
             }
 
