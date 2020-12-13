@@ -212,9 +212,9 @@ namespace MegaPrimesApp
              return megaPrimes;
         }
 
-        public static List<uint> TrialDivision(uint max)
+        public static List<uint> Simple(uint max)
         {
-            // Function to determine all the megaprime numbers up to <max> using the simple trial by division method
+            // Function to determine all the megaprime numbers up to <max> using the simple method
 
             List<uint> megaPrimes = new List<uint>();
 

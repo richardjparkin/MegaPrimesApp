@@ -48,9 +48,9 @@ namespace MegaPrimesApp
 
             if (args.Length == 2)
             {
-                if (args[1] == "TD")
+                if (args[1] == "SIMPLE")
                 {
-                    megaPrimes = MegaPrimeCalc.TrialDivision(max);
+                    megaPrimes = MegaPrimeCalc.Simple(max);
                 }
                 else if (args[1] == "SES")
                 {
