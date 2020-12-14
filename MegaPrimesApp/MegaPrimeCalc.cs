@@ -9,7 +9,7 @@ namespace MegaPrimesApp
         {
             // Function to determine whether or not a number is a prime
             // Considered prime if no number from 2 up to the sqrt<number> is exactly divisible
-            // The sqrt is used because it will be the highest number that can divide exactly
+            // Any number greater than the sqrt<number> that is exactly divisible will be a factor of a number <= sqrt<number>
                         
             if (number <= 1)
             {
